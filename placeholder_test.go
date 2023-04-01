@@ -31,6 +31,12 @@ func TestAtp(t *testing.T) {
 	assert.Equal(t, "x = @p1 AND y = @p2", s)
 }
 
+func TestDollarp(t *testing.T) {
+	sql := "x = ? AND y = ?"
+	s, _ := AtP.ReplacePlaceholders(sql)
+	assert.Equal(t, "x = $p1 AND y = $p2", s)
+}
+
 func TestPlaceholders(t *testing.T) {
 	assert.Equal(t, Placeholders(2), "?,?")
 }
@@ -51,6 +57,12 @@ func TestEscapeAtp(t *testing.T) {
 	sql := "SELECT uuid, \"data\" #> '{tags}' AS tags FROM nodes WHERE  \"data\" -> 'tags' ??| array['?'] AND enabled = ?"
 	s, _ := AtP.ReplacePlaceholders(sql)
 	assert.Equal(t, "SELECT uuid, \"data\" #> '{tags}' AS tags FROM nodes WHERE  \"data\" -> 'tags' ?| array['@p1'] AND enabled = @p2", s)
+}
+
+func TestEscapeDollarp(t *testing.T) {
+	sql := "SELECT uuid, \"data\" #> '{tags}' AS tags FROM nodes WHERE  \"data\" -> 'tags' ??| array['?'] AND enabled = ?"
+	s, _ := DollarP.ReplacePlaceholders(sql)
+	assert.Equal(t, "SELECT uuid, \"data\" #> '{tags}' AS tags FROM nodes WHERE  \"data\" -> 'tags' ?| array['$p1'] AND enabled = $p2", s)
 }
 
 func BenchmarkPlaceholdersArray(b *testing.B) {

@@ -99,6 +99,11 @@ func TestDebugSqlizerUpdateAtp(t *testing.T) {
 	assert.Equal(t, expectedDebugUpateSQL, DebugSqlizer(testDebugUpdateSQL))
 }
 
+func TestDebugSqlizerUpdateDollarp(t *testing.T) {
+	testDebugUpdateSQL.PlaceholderFormat(DollarP)
+	assert.Equal(t, expectedDebugUpateSQL, DebugSqlizer(testDebugUpdateSQL))
+}
+
 func TestDebugSqlizerUpdateDollar(t *testing.T) {
 	testDebugUpdateSQL.PlaceholderFormat(Dollar)
 	assert.Equal(t, expectedDebugUpateSQL, DebugSqlizer(testDebugUpdateSQL))
@@ -125,6 +130,11 @@ func TestDebugSqlizerDeleteAtp(t *testing.T) {
 	assert.Equal(t, expectedDebugDeleteSQL, DebugSqlizer(testDebugDeleteSQL))
 }
 
+func TestDebugSqlizerDeleteDollarp(t *testing.T) {
+	testDebugDeleteSQL.PlaceholderFormat(DollarP)
+	assert.Equal(t, expectedDebugDeleteSQL, DebugSqlizer(testDebugDeleteSQL))
+}
+
 func TestDebugSqlizerDeleteDollar(t *testing.T) {
 	testDebugDeleteSQL.PlaceholderFormat(Dollar)
 	assert.Equal(t, expectedDebugDeleteSQL, DebugSqlizer(testDebugDeleteSQL))
@@ -145,6 +155,11 @@ func TestDebugSqlizerInsertColon(t *testing.T) {
 
 func TestDebugSqlizerInsertAtp(t *testing.T) {
 	testDebugInsertSQL.PlaceholderFormat(AtP)
+	assert.Equal(t, expectedDebugInsertSQL, DebugSqlizer(testDebugInsertSQL))
+}
+
+func TestDebugSqlizerInsertDollarp(t *testing.T) {
+	testDebugInsertSQL.PlaceholderFormat(DollarP)
 	assert.Equal(t, expectedDebugInsertSQL, DebugSqlizer(testDebugInsertSQL))
 }
 
@@ -171,6 +186,11 @@ func TestDebugSqlizerSelectColon(t *testing.T) {
 
 func TestDebugSqlizerSelectAtp(t *testing.T) {
 	testDebugSelectSQL.PlaceholderFormat(AtP)
+	assert.Equal(t, expectedDebugSelectSQL, DebugSqlizer(testDebugSelectSQL))
+}
+
+func TestDebugSqlizerSelectDollarp(t *testing.T) {
+	testDebugSelectSQL.PlaceholderFormat(DollarP)
 	assert.Equal(t, expectedDebugSelectSQL, DebugSqlizer(testDebugSelectSQL))
 }
 

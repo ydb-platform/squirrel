@@ -34,6 +34,10 @@ var (
 	// AtP is a PlaceholderFormat instance that replaces placeholders with
 	// "@p"-prefixed positional placeholders (e.g. @p1, @p2, @p3).
 	AtP = atpFormat{}
+
+	// DollarP is a PlaceholderFormat instance that replaces placeholders with
+	// "$p"-prefixed positional placeholders (e.g. $p1, $p2, $p3).
+	DollarP = dollarpFormat{}
 )
 
 type questionFormat struct{}
@@ -74,6 +78,16 @@ func (atpFormat) ReplacePlaceholders(sql string) (string, error) {
 
 func (atpFormat) debugPlaceholder() string {
 	return "@p"
+}
+
+type dollarpFormat struct{}
+
+func (dollarpFormat) ReplacePlaceholders(sql string) (string, error) {
+	return replacePositionalPlaceholders(sql, "$p")
+}
+
+func (dollarpFormat) debugPlaceholder() string {
+	return "$p"
 }
 
 // Placeholders returns a string with count ? placeholders joined with commas.
