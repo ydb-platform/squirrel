@@ -33,7 +33,7 @@ func TestAtp(t *testing.T) {
 
 func TestDollarp(t *testing.T) {
 	sql := "x = ? AND y = ?"
-	s, _ := AtP.ReplacePlaceholders(sql)
+	s, _ := DollarP.ReplacePlaceholders(sql)
 	assert.Equal(t, "x = $p1 AND y = $p2", s)
 }
 
